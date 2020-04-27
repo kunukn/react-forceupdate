@@ -1,6 +1,6 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Default as App } from '../stories/ForceUpdate.stories'
+import { Default as App } from '../stories/react-forceupdate.stories'
 
 describe('ForceUpdate', () => {
   it('renders without crashing', () => {
