@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  _align-items: center;
+}
+
+.App {
+  font-family: Verdana, sans-serif;
+  padding: 20px;
+  outline: 1px solid tomato;
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+button {
+  font-size: 100%;
+  box-shadow: 0 2px 10px gray;
+  background: none;
+  border: 1px solid gray;
+
+  padding: 20px;
+  cursor: pointer;
+}
+
+.btn-main {
+  background: yellow;
+  box-shadow: 0 2px 10px darkorange;
+  border: 1px solid orange;
+}
+
+.box {
+  outline: 1px solid gray;
+  text-align: left;
+  padding: 4px;
+  margin: 4px;
+  display: inline-block;
+}

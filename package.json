@@ -1,0 +1,67 @@
+{
+  "version": "0.1.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "dev": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "mitt": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "mitt": "^1.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "react-forceupdate",
+  "author": "Kunuk Nykjær",
+  "module": "dist/react-forceupdate.esm.js",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "babel-loader": "^8.1.0",
+    "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "mitt": "^1.2.0",
+    "react": "^16.13.1",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "ts-loader": "^7.0.1",
+    "tsdx": "^0.13.2",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
+  }
+}
