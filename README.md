@@ -106,13 +106,13 @@ let nonReactive = {
   something: '',
 }
 
-let Alpha = () => {
+let Component1 = () => {
   useForceUpdate() // re-render on runForceUpdate event.
 
   return <div> {nonReactive.something} </div>
 }
 
-let Bravo = () => {
+let Component2 = () => {
   useForceUpdate() // re-render on runForceUpdate event.
 
   return <div> {nonReactive.something} </div>
@@ -130,8 +130,8 @@ function App() {
   return (
     <main>
       <button onClick={onUpdate}>Force update</button>
-      <DeeplyNestedComponentContainingAlpha />
-      <DeeplyNestedComponentContainingBravo />
+      <DeeplyNestedComponentContainingComponent1 />
+      <DeeplyNestedComponentContainingComponent2 />
     </main>
   )
 }
@@ -160,12 +160,6 @@ let AlphaBravo = () => {
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
-let CatchAll = () => {
-  let data = useForceUpdate('*') // re-render on runForceUpdate event.
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
-}
-
 function App() {
   let onUpdateAlpha = () => {
     // force update those who uses useForceUpdate hook with given type.
@@ -184,7 +178,6 @@ function App() {
 
       <DeeplyNestedComponentContainingAlpha />
       <DeeplyNestedComponentContainingBravo />
-      <DeeplyNestedComponentContainingCatchAll />
     </main>
   )
 }
