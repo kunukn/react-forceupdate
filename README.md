@@ -35,7 +35,7 @@ import { useForceUpdate } from 'react-forceupdate'
 
 function ReceiverComponent() {
   // re-render this component on run event
-  useForceUpdate()
+  useForceUpdate() // same as useForceUpdate('default')
 
   // re-render this component on run alpha event
   useForceUpdate('alpha')
@@ -60,7 +60,7 @@ import { runForceUpdate } from 'react-forceupdate'
 
 function SenderComponent() {
   let onUpdate = () => {
-    runForceUpdate()
+    runForceUpdate() // same as runForceUpdate('default')
   }
   let onAlphaUpdate = () => {
     runForceUpdate('alpha')
