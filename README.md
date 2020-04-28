@@ -40,11 +40,11 @@ function ReceiverComponent() {
   // re-render this component on run alpha event
   useForceUpdate('alpha')
 
-  // re-render this component on alpha or bravo run event
-  useForceUpdate(['alpha', 'bravo'])
+  // re-render this component on either bravo or charlie run event
+  useForceUpdate(['bravo', 'charlie'])
 
-  // re-render this component on charlie run event and receive payload
-  let { payload } = useForceUpdate('charlie')
+  // re-render this component on delta run event and receive payload
+  let { payload } = useForceUpdate('delta')
 
   return <div>component {payload.message}</div>
 }
@@ -62,11 +62,14 @@ function SenderComponent() {
   let onAlphaUpdate = () => {
     runForceUpdate('alpha')
   }
-  let onAlphaBravoUpdate = () => {
-    runForceUpdate(['alpha', 'bravo'])
+  let onABravoCharlieUpdate = () => {
+    runForceUpdate(['bravo', 'charlie'])
   }
-  let onCharlieUpdate = () => {
-    runForceUpdate('charlie', { message: hi })
+  let onDeltaUpdate = () => {
+    runForceUpdate('delta', { message: 'hi' })
+  }
+  let onEchoFoxtrotUpdate = () => {
+    runForceUpdate(['echo', 'foxtrot'], { message: 'hello' })
   }
 
   return (
@@ -77,12 +80,12 @@ function SenderComponent() {
         re-render alpha receiver components
       </button>
 
-      <button onClick={onAlphaBravoUpdate}>
-        re-render alpha and bravo receiver components
+      <button onClick={onABravoCharlieUpdate}>
+        re-render bravo and charlie receiver components
       </button>
 
-      <button onClick={onCharlieUpdate}>
-        re-render charlie components with provided payload
+      <button onClick={onDeltaUpdate}>
+        re-render delta receiver components with provided payload
       </button>
     </div>
   )
