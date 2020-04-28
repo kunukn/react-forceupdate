@@ -10,11 +10,9 @@ export type UseForceUpdateProps =
   | Array<UseForceUpdatePropsItem>
 
 type Input = string | undefined | '*'
-type RunForceUpdatePropsItem = {
-  type?: Input
-  payload?: any
-}
-export type RunForceUpdateProps = Input | RunForceUpdatePropsItem
+
+export type RunForceUpdateType = Input | Array<Input>
+export type RunForceUpdatePayload = any
 
 export type UseForceUpdateState = {
   count: number
@@ -53,16 +51,18 @@ let getEmitKey = (type: Input): string => {
 
 let initialState: UseForceUpdateState = { count: 0 }
 
-export function runForceUpdate(props?: RunForceUpdateProps) {
-  if (typeof props === 'undefined' || typeof props === 'string') {
-    emitter.emit(getEmitKey(props as Input))
+export function runForceUpdate(
+  types?: RunForceUpdateType,
+  payload?: RunForceUpdatePayload
+) {
+  if (typeof types === 'undefined' || typeof types === 'string') {
+    emitter.emit(getEmitKey(types), payload)
+  } else if (Array.isArray(types)) {
+    types.forEach(type => {
+      emitter.emit(getEmitKey(type), payload)
+    })
   } else {
-    let typedProps: RunForceUpdatePropsItem = props
-    let payload = typedProps?.payload
-
-    typeof payload === 'undefined'
-      ? emitter.emit(getEmitKey(typedProps.type))
-      : emitter.emit(getEmitKey(typedProps.type), payload)
+    // error
   }
 }
 

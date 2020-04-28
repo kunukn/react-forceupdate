@@ -26,6 +26,69 @@ npm install react-forceupdate
 # yarn add react-forceupdate
 ```
 
+## API
+
+### useForceUpdate
+
+```jsx
+import { useForceUpdate } from 'react-forceupdate'
+
+function ReceiverComponent() {
+  // re-render this component on run event
+  useForceUpdate()
+
+  // re-render this component on run alpha event
+  useForceUpdate('alpha')
+
+  // re-render this component on alpha or bravo run event
+  useForceUpdate(['alpha', 'bravo'])
+
+  // re-render this component on charlie run event and receive payload
+  let { payload } = useForceUpdate('charlie')
+
+  return <div>component {payload.message}</div>
+}
+```
+
+### useForceUpdate
+
+```jsx
+import { runForceUpdate } from 'react-forceupdate'
+
+function SenderComponent() {
+  let onUpdate = () => {
+    runForceUpdate()
+  }
+  let onAlphaUpdate = () => {
+    runForceUpdate('alpha')
+  }
+  let onAlphaBravoUpdate = () => {
+    runForceUpdate(['alpha', 'bravo'])
+  }
+  let onCharlieUpdate = () => {
+    runForceUpdate('charlie', { message: hi })
+  }
+
+  return (
+    <div>
+      <button onClick={onUpdate}>re-render receiver components</button>
+
+      <button onClick={onAlphaUpdate}>
+        re-render alpha receiver components
+      </button>
+
+      <button onClick={onAlphaBravoUpdate}>
+        re-render alpha and bravo receiver components
+      </button>
+
+      <button onClick={onCharlieUpdate}>
+        re-render charlie components with provided payload
+      </button>
+    </div>
+  )
+}
+```
+
 ## Usage example
 
 ### Basic
@@ -50,7 +113,7 @@ let Bravo = () => {
 }
 
 function App() {
-  let onForceUpdate = () => {
+  let onUpdate = () => {
     // apply non-reactive changes.
     nonReactive.something = 'something updated'
 
@@ -60,7 +123,7 @@ function App() {
 
   return (
     <main>
-      <button onClick={onForceUpdate}>Force update</button>
+      <button onClick={onUpdate}>Force update</button>
       <DeeplyNestedComponentContainingAlpha />
       <DeeplyNestedComponentContainingBravo />
     </main>
@@ -85,7 +148,7 @@ let Bravo = () => {
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
-let AlphaOrBravo = () => {
+let AlphaBravo = () => {
   let data = useForceUpdate(['alpha', 'bravo']) // re-render on runForceUpdate event.
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -98,24 +161,23 @@ let CatchAll = () => {
 }
 
 function App() {
-  let onForceUpdateAlpha = () => {
+  let onUpdateAlpha = () => {
     // force update those who uses useForceUpdate hook with given type.
-    runForceUpdate({ type: 'alpha', payload: 'hi' })
+    runForceUpdate('alpha', { message: 'hi' })
   }
 
-  let onForceUpdateBravo = () => {
+  let onUpdateBravo = () => {
     // force update those who uses useForceUpdate hook with given type.
     runForceUpdate('bravo')
   }
 
   return (
     <main>
-      <button onClick={onForceUpdateAlpha}>Force update alpha</button>
-      <button onClick={onForceUpdateBravo}>Force update bravo</button>
+      <button onClick={onUpdateAlpha}>Force update alpha</button>
+      <button onClick={onUpdateBravo}>Force update bravo</button>
 
       <DeeplyNestedComponentContainingAlpha />
       <DeeplyNestedComponentContainingBravo />
-      <DeeplyNestedComponentContainingAlphaBravoDefault />
       <DeeplyNestedComponentContainingCatchAll />
     </main>
   )

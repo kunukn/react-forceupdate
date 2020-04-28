@@ -128,7 +128,7 @@ export const Type = () => {
         <button
           className="btn-main"
           onClick={() => {
-            runForceUpdate({ type: 'alpha', payload: Date.now() })
+            runForceUpdate('alpha', { date: Date.now() })
           }}
         >
           Alpha Re-rerender all
