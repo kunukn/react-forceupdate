@@ -50,7 +50,7 @@ function ReceiverComponent() {
 }
 ```
 
-### useForceUpdate
+### runForceUpdate
 
 ```jsx
 import { runForceUpdate } from 'react-forceupdate'
