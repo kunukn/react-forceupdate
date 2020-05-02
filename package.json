@@ -32,13 +32,6 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "endOfLine": "auto"
-  },
   "name": "react-forceupdate",
   "author": "Kunuk Nykjær",
   "module": "dist/react-forceupdate.esm.js",

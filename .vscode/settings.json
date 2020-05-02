@@ -1,0 +1,15 @@
+{
+  "workbench.tree.indent": 25,
+  "eslint.run": "onType",
+  "eslint.validate": [
+    "html",
+    "javascript"
+  ],
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    // https://github.com/prettier/prettier-vscode#linter-integration
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true,
+    "source.fixAll.stylelint": true
+  },
+}
