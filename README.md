@@ -18,12 +18,10 @@ https://bundlephobia.com/result?p=mitt
 ## Install
 
 ```bash
-npm install mitt
-npm install react-forceupdate
+npm install mitt react-forceupdate
 
 # or
-# yarn add mitt
-# yarn add react-forceupdate
+# yarn add mitt react-forceupdate
 ```
 
 ## API
