@@ -159,3 +159,41 @@ export const Type = () => {
 
   return <App />
 }
+
+export const SenderReceiver = () => {
+  const Receiver = () => {
+    let { payload } = useForceUpdate('default')
+    let renderTime = React.useRef({}).current
+    renderTime = Date.now()
+    return (
+      <div>
+        <div data-testid="receiver-payload">{payload}</div>
+        <div>{renderTime}</div>
+      </div>
+    )
+  }
+
+  const Sender = () => {
+    return (
+      <button
+        data-testid="sender-button"
+        onClick={() => {
+          runForceUpdate('default', 'hello')
+        }}
+      >
+        Send
+      </button>
+    )
+  }
+
+  const App = () => {
+    return (
+      <div>
+        <Receiver />
+        <Sender />
+      </div>
+    )
+  }
+
+  return <App />
+}
