@@ -162,12 +162,14 @@ export const Type = () => {
 
 export const SenderReceiver = () => {
   const Receiver = () => {
-    let { payload } = useForceUpdate('default')
+    let { payload, key, count } = useForceUpdate('default')
     let renderTime = React.useRef({}).current
     renderTime = Date.now()
     return (
       <div>
-        <div data-testid="receiver-payload">{payload}</div>
+        <div data-testid="receiver-payload">
+          {count}:{key}:{payload}
+        </div>
         <div>{renderTime}</div>
       </div>
     )
