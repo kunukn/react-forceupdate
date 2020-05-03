@@ -1,4 +1,4 @@
-// @________ts-nocheck
+// __@ts-nocheck
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import '@testing-library/jest-dom'
@@ -19,7 +19,9 @@ describe('ForceUpdate', () => {
     // arrange
     // first the payload has not been received yet.
     const receiverPayload = screen.getByTestId('receiver-payload')
-    expect(getNodeText(receiverPayload)).toBe(`{"count":0}`)
+    expect(getNodeText(receiverPayload)).toBe(
+      `{\"eventCount\":0,\"subscribedEventType\":\"alpha\"}`
+    )
 
     // Act
     // Invoke event
@@ -29,7 +31,7 @@ describe('ForceUpdate', () => {
     // Assert
     // Receiver has received the event with payload
     expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventType\":\"event_alpha\",\"payload\":\"hello1\",\"subscribedEventType\":\"alpha\",\"count\":1}`
+      `{\"eventType\":\"event_alpha\",\"payload\":\"hello1\",\"subscribedEventType\":\"alpha\",\"eventCount\":1}`
     )
 
     // Act
@@ -38,7 +40,7 @@ describe('ForceUpdate', () => {
     // Assert
     // Receiver has received the event with payload
     expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventType\":\"event_alpha\",\"payload\":\"hello2\",\"subscribedEventType\":\"alpha\",\"count\":2}`
+      `{\"eventType\":\"event_alpha\",\"payload\":\"hello2\",\"subscribedEventType\":\"alpha\",\"eventCount\":2}`
     )
   })
 })

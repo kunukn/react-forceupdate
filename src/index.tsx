@@ -5,24 +5,25 @@ import mittt, { Emitter } from 'mittt'
 // see: https://github.com/storybookjs/storybook/issues/9556
 
 export type UseForceUpdateProps = string
-type Input = string | undefined
+type Input = string
 
 export type RunForceUpdateEventType = Input
 export type RunForceUpdatePayload = any
 
 export type UseForceUpdateState = {
-  count: number
-  subscribedEventType?: string
+  eventCount: number
+  subscribedEventType: string
   eventType?: string
   payload?: any
 }
 
 let emitter: Emitter = mittt()
+let prefix = 'event_'
 
 let getEmitKey = (eventType: Input): string => {
-  if (!eventType) return 'event_default'
+  if (!eventType) return prefix + 'default'
 
-  return 'event_' + eventType
+  return prefix + eventType
 }
 
 export function runForceUpdate(
@@ -36,12 +37,14 @@ export function useForceUpdate(
   subscribedEventType?: Input
 ): UseForceUpdateState {
   let key = subscribedEventType
-    ? 'event_' + subscribedEventType
-    : 'event_default'
-  let [state, setState] = React.useState({ count: 0 })
+    ? prefix + subscribedEventType
+    : prefix + 'default'
+  let [state, setState] = React.useState({ eventCount: 0, subscribedEventType })
 
-  let fn = (eventType: Input, payload: any) =>
-    updateState(setState, subscribedEventType, eventType, payload)
+  let fn = React.useMemo(() => {
+    return (eventType: Input, payload: any) =>
+      updateState(setState, subscribedEventType, eventType, payload)
+  }, [])
 
   React.useEffect(() => {
     emitter.on(key, fn)
@@ -62,12 +65,12 @@ function updateState(
 ) {
   // This triggers re-render
   setState(prevState => {
-    let count = (prevState.count || 0) + 1
+    let eventCount = (prevState.eventCount || 0) + 1
     let result: UseForceUpdateState = {
       eventType,
       payload,
       subscribedEventType,
-      count,
+      eventCount,
     }
     if (payload === undefined) delete result.payload
 
