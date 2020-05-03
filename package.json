@@ -22,7 +22,7 @@
     "gzip": "node gzip-size.js"
   },
   "dependencies": {
-    "mittt": "1"
+    "mittt": "^1"
   },
   "peerDependencies": {
     "react": ">=16"
