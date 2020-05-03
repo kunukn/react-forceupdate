@@ -19,7 +19,7 @@
     "prepare": "tsdx build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "gzip": "node gzip.js"
+    "gzip": "node gzip-size.js"
   },
   "dependencies": {
     "mittt": "1"
