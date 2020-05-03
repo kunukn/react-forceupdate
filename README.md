@@ -33,7 +33,7 @@ function ReceiverComponent() {
   // re-render this component on this event
   useForceUpdate('alpha')
 
-  // re-render this component on this event with receive payload
+  // re-render this component on this event with received payload
   let { payload } = useForceUpdate('bravo')
 
   return <div>component {payload.message}</div>
@@ -120,25 +120,26 @@ function App() {
 import { runForceUpdate, useForceUpdate } from 'react-forceupdate'
 
 let Alpha = () => {
-  let data = useForceUpdate('alpha') // re-render on runForceUpdate event.
+  let data = useForceUpdate('alpha') // re-render on this event.
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
 let Bravo = () => {
-  let data = useForceUpdate('bravo') // re-render on runForceUpdate event.
+  let data = useForceUpdate('bravo') // re-render on this event.
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
 function App() {
   let onUpdateAlpha = () => {
-    // force update those who uses useForceUpdate hook with given type.
-    runForceUpdate('alpha', { message: 'hi' })
+    // re-render components using useForceUpdate hook with given eventType.
+    const payload = { message: 'hi' }
+    runForceUpdate('alpha', payload)
   }
 
   let onUpdateBravo = () => {
-    // force update those who uses useForceUpdate hook with given type.
+    // re-render components using useForceUpdate hook with given eventType.
     runForceUpdate('bravo')
   }
 
