@@ -166,20 +166,21 @@ export const SenderReceiver = () => {
     renderTime = Date.now()
     return (
       <div>
-        <pre data-testid="receiver-payload">
-          {JSON.stringify(state)}
-        </pre>
+        <pre data-testid="receiver-payload">{JSON.stringify(state)}</pre>
         <div>{renderTime}</div>
       </div>
     )
   }
 
   const Sender = () => {
+    let clickCount = React.useRef({}).current as number
+    clickCount = 0
     return (
       <button
         data-testid="sender-button"
         onClick={() => {
-          runForceUpdate('alpha', 'hello')
+          clickCount++
+          runForceUpdate('alpha', 'hello' + clickCount)
         }}
       >
         Send

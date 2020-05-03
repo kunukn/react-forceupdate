@@ -29,6 +29,16 @@ describe('ForceUpdate', () => {
     // Assert
     // Receiver has received the event with payload
     expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventType\":\"event_alpha\",\"payload\":\"hello\",\"subscribedEventType\":\"alpha\",\"count\":1}`)
+      `{\"eventType\":\"event_alpha\",\"payload\":\"hello1\",\"subscribedEventType\":\"alpha\",\"count\":1}`
+    )
+
+    // Act
+    // Invoke event
+    fireEvent.click(senderButton)
+    // Assert
+    // Receiver has received the event with payload
+    expect(getNodeText(receiverPayload)).toBe(
+      `{\"eventType\":\"event_alpha\",\"payload\":\"hello2\",\"subscribedEventType\":\"alpha\",\"count\":2}`
+    )
   })
 })
