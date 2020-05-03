@@ -27,9 +27,9 @@ let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
   let result = []
 
   function add(typeItem: Input) {
-    if (typeof typeItem === 'undefined') result.push('update_default')
+    if (typeof typeItem === 'undefined') result.push('default')
     else if (typeItem === '*') result.push('*')
-    else result.push('update_' + typeItem)
+    else result.push(typeItem)
   }
 
   if (Array.isArray(type)) {
@@ -44,9 +44,9 @@ let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
 }
 
 let getEmitKey = (type: Input): string => {
-  if (typeof type === 'undefined') return 'update_default'
+  if (typeof type === 'undefined') return 'default'
 
-  return 'update_' + type
+  return type
 }
 
 let initialState: UseForceUpdateState = { count: 0 }

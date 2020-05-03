@@ -8575,6 +8575,11 @@ mitt@^1.2.0:
   resolved "https://registry.yarnpkg.com/mitt/-/mitt-1.2.0.tgz#cb24e6569c806e31bd4e3995787fe38a04fdf90d"
   integrity sha512-r6lj77KlwqLhIUku9UWYes7KJtsczvolZkzp8hbaDPPaE24OmWl5s539Mytlj22siEQKosZ26qCBgda2PKwoJw==
 
+mittt@1:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mittt/-/mittt-1.0.0.tgz#0a33c0882e6583231ca3a93e7f69e7e2dfb50450"
+  integrity sha512-rJNmYi3xAXcDNNa5ntNQ0x7aKlEUz1ZBif9JD0u6AVna0A2EbxD5YU/m5+nTHri/PFonfyQe8DxHWE2ctuTuvA==
+
 mixin-deep@^1.2.0:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
