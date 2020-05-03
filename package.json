@@ -18,7 +18,8 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "gzip": "node gzip.js"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -46,6 +47,7 @@
     "@types/react-dom": "^16.9.7",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
+    "gzip-size": "^5.1.1",
     "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
     "mittt": "^1",
