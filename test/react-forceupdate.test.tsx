@@ -28,6 +28,6 @@ describe('ForceUpdate', () => {
 
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(receiverPayload)).toBe('1:default:hello')
+    expect(getNodeText(receiverPayload)).toBe('1:event_default:hello')
   })
 })

@@ -41,9 +41,6 @@ function ReceiverComponent() {
   // re-render this component on either bravo or charlie run event
   useForceUpdate(['bravo', 'charlie'])
 
-  // re-render this component on any run event
-  useForceUpdate('*')
-
   // re-render this component on delta run event with receive payload
   let { payload } = useForceUpdate('delta')
 

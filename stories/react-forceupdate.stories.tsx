@@ -151,7 +151,6 @@ export const Type = () => {
           <Box type="bravo" />
           <Box />
           <Box types={['alpha', 'default']} />
-          <Box type="*" />
         </div>
       </div>
     )

@@ -9,7 +9,7 @@ export type UseForceUpdateProps =
   | UseForceUpdatePropsItem
   | Array<UseForceUpdatePropsItem>
 
-type Input = string | undefined | '*'
+type Input = string | undefined
 
 export type RunForceUpdateType = Input | Array<Input>
 export type RunForceUpdatePayload = any
@@ -27,9 +27,8 @@ let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
   let result = []
 
   function add(typeItem: Input) {
-    if (typeof typeItem === 'undefined') result.push('default')
-    else if (typeItem === '*') result.push('*')
-    else result.push(typeItem)
+    if (!typeItem) result.push('event_default')
+    else result.push('event_' + typeItem)
   }
 
   if (Array.isArray(type)) {
@@ -44,9 +43,9 @@ let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
 }
 
 let getEmitKey = (type: Input): string => {
-  if (typeof type === 'undefined') return 'default'
+  if (!type) return 'event_default'
 
-  return type
+  return 'event_' + type
 }
 
 let initialState: UseForceUpdateState = { count: 0 }
@@ -113,12 +112,6 @@ function updateState(
 
   let type = mittEvt ? mittType : undefined
   let payload = mittEvt ? mittEvt : mittType
-
-  if (key === '*' && !type) {
-    // Special thing with mitt and '*' usage. Workaround that.
-    type = payload
-    payload = undefined
-  }
 
   // This triggers re-render
   setState(prevState => {
