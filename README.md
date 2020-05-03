@@ -13,10 +13,10 @@ Force update from anywhere to those using a useForceUpdate hook with optional pa
 ## Install
 
 ```bash
-npm install react-forceupdate
+npm install mittt@1 react-forceupdate
 
 # or
-# yarn add react-forceupdate
+# yarn add mittt@1 react-forceupdate
 ```
 
 ## API

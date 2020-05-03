@@ -21,6 +21,9 @@
     "build-storybook": "build-storybook",
     "gzip": "node gzip.js"
   },
+  "dependencies": {
+    "mittt": "1"
+  },
   "peerDependencies": {
     "react": ">=16"
   },
@@ -49,8 +52,8 @@
     "babel-loader": "^8.1.0",
     "gzip-size": "^5.1.1",
     "husky": "^4.2.5",
+    "mittt": "1",
     "identity-obj-proxy": "^3.0.0",
-    "mittt": "^1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",

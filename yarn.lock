@@ -8570,7 +8570,7 @@ mississippi@^3.0.0:
     stream-each "^1.1.0"
     through2 "^2.0.0"
 
-mittt@^1:
+mittt@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/mittt/-/mittt-1.0.0.tgz#0a33c0882e6583231ca3a93e7f69e7e2dfb50450"
   integrity sha512-rJNmYi3xAXcDNNa5ntNQ0x7aKlEUz1ZBif9JD0u6AVna0A2EbxD5YU/m5+nTHri/PFonfyQe8DxHWE2ctuTuvA==
