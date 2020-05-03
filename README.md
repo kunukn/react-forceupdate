@@ -8,7 +8,7 @@
 ## About
 
 React hooks for force updating components.
-Force update from anywhere to those using a useForceUpdate hook.
+Force update from anywhere to those using a useForceUpdate hook with optional payload.
 
 ## Install
 
@@ -27,7 +27,7 @@ npm install react-forceupdate
 import { useForceUpdate } from 'react-forceupdate'
 
 function ReceiverComponent() {
-  // re-render this component on event
+  // re-render this component on 'default' event
   useForceUpdate() // same as useForceUpdate('default')
 
   // re-render this component on this event
@@ -80,17 +80,17 @@ function SenderComponent() {
 import { runForceUpdate, useForceUpdate } from 'react-forceupdate'
 
 let nonReactive = {
-  something: '',
+  something: 'waiting...',
 }
 
 let Component1 = () => {
-  useForceUpdate() // re-render on runForceUpdate event.
+  useForceUpdate()
 
   return <div> {nonReactive.something} </div>
 }
 
 let Component2 = () => {
-  useForceUpdate() // re-render on runForceUpdate event.
+  useForceUpdate()
 
   return <div> {nonReactive.something} </div>
 }
@@ -100,7 +100,6 @@ function App() {
     // apply non-reactive changes.
     nonReactive.something = 'something updated'
 
-    // force update those who uses useForceUpdate hook.
     runForceUpdate()
   }
 
@@ -114,32 +113,30 @@ function App() {
 }
 ```
 
-### With type or payload
+### With eventType or payload
 
 ```jsx
 import { runForceUpdate, useForceUpdate } from 'react-forceupdate'
 
 let Alpha = () => {
-  let data = useForceUpdate('alpha') // re-render on this event.
+  let data = useForceUpdate('alpha')
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
 let Bravo = () => {
-  let data = useForceUpdate('bravo') // re-render on this event.
+  let data = useForceUpdate('bravo')
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
 function App() {
   let onUpdateAlpha = () => {
-    // re-render components using useForceUpdate hook with given eventType.
     const payload = { message: 'hi' }
     runForceUpdate('alpha', payload)
   }
 
   let onUpdateBravo = () => {
-    // re-render components using useForceUpdate hook with given eventType.
     runForceUpdate('bravo')
   }
 

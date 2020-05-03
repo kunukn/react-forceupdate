@@ -1,5 +1,5 @@
 import React from 'react'
-import mittt, { Emitter } from 'mittt'
+import mittt, { Emitter, EventHandlerMap } from 'mittt'
 
 // Please do not use types off of a default export module or else Storybook Docs will suffer.
 // see: https://github.com/storybookjs/storybook/issues/9556
@@ -17,10 +17,11 @@ export type UseForceUpdateState = {
   payload?: any
 }
 
-let emitter: Emitter = mittt()
+let emitterHandlerMap: EventHandlerMap = Object.create(null)
+let emitter: Emitter = mittt(emitterHandlerMap)
 let prefix = 'event_'
 
-let getEmitKey = (eventType: Input): string => {
+let getKey = (eventType: Input): string => {
   if (!eventType) return prefix + 'default'
 
   return prefix + eventType
@@ -30,27 +31,32 @@ export function runForceUpdate(
   eventType?: RunForceUpdateEventType,
   payload?: RunForceUpdatePayload
 ) {
-  emitter.emit(getEmitKey(eventType), payload)
+  emitter.emit(getKey(eventType), payload)
 }
 
 export function useForceUpdate(
   subscribedEventType?: Input
 ): UseForceUpdateState {
-  let key = subscribedEventType
-    ? prefix + subscribedEventType
-    : prefix + 'default'
+  let key = getKey(subscribedEventType)
   let [state, setState] = React.useState({ eventCount: 0, subscribedEventType })
 
-  let fn = React.useMemo(() => {
-    return (eventType: Input, payload: any) =>
-      updateState(setState, subscribedEventType, eventType, payload)
-  }, [])
+  /*
+  let fn = React.useMemo(
+    () => (eventType: Input, payload: any) =>
+      updateState(setState, subscribedEventType, eventType, payload),
+    []
+  )
+  */
+  // React.useMemo not needed.
+  let fn = (eventType: Input, payload: any) =>
+    updateState(setState, subscribedEventType, eventType, payload)
 
   React.useEffect(() => {
     emitter.on(key, fn)
-
+    // console.debug('on', emitterHandlerMap)
     return () => {
       emitter.off(key, fn)
+      // console.debug('off', emitterHandlerMap)
     }
   })
 
