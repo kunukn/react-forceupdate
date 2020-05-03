@@ -20,11 +20,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "dependencies": {
-    "mitt": "^1.2.0"
-  },
   "peerDependencies": {
-    "mitt": "^1.2.0",
     "react": ">=16"
   },
   "husky": {
@@ -52,8 +48,7 @@
     "babel-loader": "^8.1.0",
     "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
-    "mitt": "^1.2.0",
-    "mittt": "1",
+    "mittt": "^1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",

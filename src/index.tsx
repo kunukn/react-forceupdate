@@ -1,5 +1,5 @@
 import React from 'react'
-import mitt from 'mitt'
+import mittt, { Emitter } from 'mittt'
 
 // Please do not use types off of a default export module or else Storybook Docs will suffer.
 // see: https://github.com/storybookjs/storybook/issues/9556
@@ -16,14 +16,14 @@ export type RunForceUpdatePayload = any
 
 export type UseForceUpdateState = {
   count: number
-  type?: string
-  payload?: any
+  eventType?: string
   key?: any
+  payload?: any
 }
 
-let emitter: mitt.Emitter = mitt()
+let emitter: Emitter = mittt()
 
-let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
+let getOnKeys = (eventType: UseForceUpdateProps): Array<string> => {
   let result = []
 
   function add(typeItem: Input) {
@@ -31,54 +31,46 @@ let getOnKeys = (type: UseForceUpdateProps): Array<string> => {
     else result.push('event_' + typeItem)
   }
 
-  if (Array.isArray(type)) {
-    type.forEach(typeItem => {
-      add(typeItem)
-    })
-  } else {
-    add(type)
-  }
+  if (Array.isArray(eventType)) {
+    eventType.forEach(typeItem => add(typeItem))
+  } else add(eventType)
 
   return result
 }
 
-let getEmitKey = (type: Input): string => {
-  if (!type) return 'event_default'
+let getEmitKey = (eventType: Input): string => {
+  if (!eventType) return 'event_default'
 
-  return 'event_' + type
+  return 'event_' + eventType
 }
 
-let initialState: UseForceUpdateState = { count: 0 }
-
 export function runForceUpdate(
-  types?: RunForceUpdateType,
+  eventType?: RunForceUpdateType,
   payload?: RunForceUpdatePayload
 ) {
-  if (typeof types === 'undefined' || typeof types === 'string') {
-    emitter.emit(getEmitKey(types), payload)
-  } else if (Array.isArray(types)) {
-    types.forEach(type => {
-      emitter.emit(getEmitKey(type), payload)
-    })
+  if (typeof eventType === 'undefined' || typeof eventType === 'string') {
+    emitter.emit(getEmitKey(eventType), payload)
+  } else if (Array.isArray(eventType)) {
+    eventType.forEach(type => emitter.emit(getEmitKey(type), payload))
   } else {
     // error
   }
 }
 
-export function useForceUpdate(type?: Input): UseForceUpdateState {
-  const [state, setState] = React.useState(initialState)
-
+export function useForceUpdate(eventType?: Input): UseForceUpdateState {
   let keys = React.useMemo(() => {
-    return getOnKeys(type)
+    return getOnKeys(eventType)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const [state, setState] = React.useState({ count: 0 })
 
   let updateFunctions = React.useMemo(() => {
     let functions = {}
 
     keys.forEach(key => {
-      functions[key] = (mittType: any, mittEvt?: any) => {
-        updateState(setState, key, mittType, mittEvt)
+      functions[key] = (eventType: any, payload?: any) => {
+        updateState(setState, key, eventType, payload)
       }
     })
 
@@ -103,21 +95,13 @@ export function useForceUpdate(type?: Input): UseForceUpdateState {
 function updateState(
   setState: React.Dispatch<React.SetStateAction<UseForceUpdateState>>,
   key: Input,
-  mittType: any,
-  mittEvt?: any
+  eventType: any,
+  payload?: any
 ) {
-  // Order of args in mitt depending on whether type is '*' or not.
-  // Either it is (mittType, mittEvt) or (mittEvt).
-  // https://github.com/developit/mitt/blob/master/src/index.js
-
-  let type = mittEvt ? mittType : undefined
-  let payload = mittEvt ? mittEvt : mittType
-
   // This triggers re-render
   setState(prevState => {
     let count = (prevState.count || 0) + 1
-    let result: UseForceUpdateState = { type, payload, count, key }
-    if (type === undefined) delete result.type
+    let result: UseForceUpdateState = { eventType, payload, count, key }
     if (payload === undefined) delete result.payload
 
     return result

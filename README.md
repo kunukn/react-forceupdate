@@ -10,18 +10,13 @@
 React hooks for force updating components.
 Force update from anywhere to those using a useForceUpdate hook.
 
-## Dependency
-
-mitt: tiny library ~270 byte gzipped.
-https://bundlephobia.com/result?p=mitt
-
 ## Install
 
 ```bash
-npm install mitt react-forceupdate
+npm install react-forceupdate
 
 # or
-# yarn add mitt react-forceupdate
+# yarn add react-forceupdate
 ```
 
 ## API
