@@ -19,7 +19,7 @@ describe('ForceUpdate', () => {
     // arrange
     // first the payload has not been received yet.
     const receiverPayload = screen.getByTestId('receiver-payload')
-    expect(getNodeText(receiverPayload)).toBe('0::')
+    expect(getNodeText(receiverPayload)).toBe(`{"count":0}`)
 
     // Act
     // Invoke event
@@ -28,6 +28,7 @@ describe('ForceUpdate', () => {
 
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(receiverPayload)).toBe('1:event_default:hello')
+    expect(getNodeText(receiverPayload)).toBe(
+      `{\"eventType\":\"event_alpha\",\"payload\":\"hello\",\"subscribedEventType\":\"alpha\",\"count\":1}`)
   })
 })

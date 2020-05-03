@@ -161,14 +161,14 @@ export const Type = () => {
 
 export const SenderReceiver = () => {
   const Receiver = () => {
-    let { payload, key, count } = useForceUpdate('default')
+    let state = useForceUpdate('alpha')
     let renderTime = React.useRef({}).current
     renderTime = Date.now()
     return (
       <div>
-        <div data-testid="receiver-payload">
-          {count}:{key}:{payload}
-        </div>
+        <pre data-testid="receiver-payload">
+          {JSON.stringify(state)}
+        </pre>
         <div>{renderTime}</div>
       </div>
     )
@@ -179,7 +179,7 @@ export const SenderReceiver = () => {
       <button
         data-testid="sender-button"
         onClick={() => {
-          runForceUpdate('default', 'hello')
+          runForceUpdate('alpha', 'hello')
         }}
       >
         Send

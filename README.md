@@ -27,17 +27,14 @@ npm install react-forceupdate
 import { useForceUpdate } from 'react-forceupdate'
 
 function ReceiverComponent() {
-  // re-render this component on run event
+  // re-render this component on event
   useForceUpdate() // same as useForceUpdate('default')
 
-  // re-render this component on run alpha event
+  // re-render this component on this event
   useForceUpdate('alpha')
 
-  // re-render this component on either bravo or charlie run event
-  useForceUpdate(['bravo', 'charlie'])
-
-  // re-render this component on delta run event with receive payload
-  let { payload } = useForceUpdate('delta')
+  // re-render this component on this event with receive payload
+  let { payload } = useForceUpdate('bravo')
 
   return <div>component {payload.message}</div>
 }
@@ -55,14 +52,8 @@ function SenderComponent() {
   let onAlphaUpdate = () => {
     runForceUpdate('alpha')
   }
-  let onABravoCharlieUpdate = () => {
-    runForceUpdate(['bravo', 'charlie'])
-  }
-  let onDeltaUpdate = () => {
-    runForceUpdate('delta', { message: 'hi' })
-  }
-  let onEchoFoxtrotUpdate = () => {
-    runForceUpdate(['echo', 'foxtrot'], { message: 'hello' })
+  let onBravoUpdate = () => {
+    runForceUpdate('bravo', { message: 'hi' })
   }
 
   return (
@@ -73,12 +64,8 @@ function SenderComponent() {
         re-render alpha receiver components
       </button>
 
-      <button onClick={onABravoCharlieUpdate}>
-        re-render bravo and charlie receiver components
-      </button>
-
-      <button onClick={onDeltaUpdate}>
-        re-render delta receiver components with provided payload
+      <button onClick={onBravoUpdate}>
+        re-render bravo receiver components with provided payload
       </button>
     </div>
   )
@@ -140,12 +127,6 @@ let Alpha = () => {
 
 let Bravo = () => {
   let data = useForceUpdate('bravo') // re-render on runForceUpdate event.
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
-}
-
-let AlphaBravo = () => {
-  let data = useForceUpdate(['alpha', 'bravo']) // re-render on runForceUpdate event.
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
