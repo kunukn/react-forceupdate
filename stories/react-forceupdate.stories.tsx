@@ -95,17 +95,17 @@ export const Default = () => {
 }
 
 export const Type = () => {
-  let Box = ({ type, types }: any) => {
-    let forceUpdateInfo = useForceUpdate(types || type) // re-render on runForceUpdate event
+  let Box = ({ type }: any) => {
+    let forceUpdateInfo = useForceUpdate(type)
 
     let [value, setValue] = React.useState(Date.now())
-    let rerender = React.useRef(-1)
-    rerender.current++
+    let rerender = (React.useRef({}).current = 0)
+    rerender++
 
     return (
       <div className="box">
         <div>box {type}</div>
-        {types && <pre>{JSON.stringify(types, null, 2)}</pre>}
+
         <pre>{JSON.stringify(forceUpdateInfo, null, 2)}</pre>
         <div>
           Value should not change on re-render: <p>{value}</p>
@@ -117,7 +117,7 @@ export const Type = () => {
         >
           update
         </button>
-        <div>re-render count: {rerender.current}</div>
+        <div>re-render count: {rerender}</div>
       </div>
     )
   }
@@ -150,7 +150,6 @@ export const Type = () => {
           <Box type="alpha" />
           <Box type="bravo" />
           <Box />
-          <Box types={['alpha', 'default']} />
         </div>
       </div>
     )
