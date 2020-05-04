@@ -163,15 +163,26 @@ export const SenderReceiver = () => {
       <div style={{ border: '1px solid', padding: '20px' }} data-testid={id}>
         <p>Receiver: {type}</p>
         <div>
-          <div><strong>count: </strong><span data-testid={id + "eventcount"}>{state.eventCount}</span></div>
-          <div><strong>subscribed: </strong><span data-testid={id + "subscribedto"}>{state.subscribedTo}</span></div>
-          <div><strong>event: </strong><span data-testid={id + "eventtype"}>{state.eventType}</span></div>
-          <div><strong>payload: </strong><span data-testid={id + "payload"}>{state.payload}</span></div>
+          <div>
+            <strong>count: </strong>
+            <span data-testid={id + 'eventcount'}>{state.eventCount}</span>
+          </div>
+          <div>
+            <strong>subscribed: </strong>
+            <span data-testid={id + 'subscribedto'}>{state.subscribedTo}</span>
+          </div>
+          <div>
+            <strong>event: </strong>
+            <span data-testid={id + 'eventtype'}>{state.eventType}</span>
+          </div>
+          <div>
+            <strong>payload: </strong>
+            <span data-testid={id + 'payload'}>{state.payload}</span>
+          </div>
         </div>
         <div>Render time: {Date.now()}</div>
       </div>
     )
-
   }
 
   const Sender = () => {
