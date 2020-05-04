@@ -161,4 +161,5 @@ function App() {
 
 ## Demo
 
-https://codesandbox.io/s/react-forceupdate-pioue?file=/src/App.js
+- https://codesandbox.io/s/react-forceupdate-library-vb2x2
+- https://codesandbox.io/s/react-forceupdate-pioue
