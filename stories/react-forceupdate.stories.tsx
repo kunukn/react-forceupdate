@@ -181,6 +181,7 @@ export const SenderReceiver = () => {
     clickCount = 0
     return (
       <button
+        style={{ width: '100%' }}
         data-testid="sender-button"
         onClick={() => {
           clickCount++
@@ -195,10 +196,10 @@ export const SenderReceiver = () => {
   const App = () => {
     return (
       <div>
+        <Sender />
         <Receiver id="default" type={undefined} />
         <Receiver id="alpha" type="alpha" />
         <Receiver id="*" type="*" />
-        <Sender />
       </div>
     )
   }

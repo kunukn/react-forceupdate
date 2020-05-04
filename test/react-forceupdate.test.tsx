@@ -100,5 +100,19 @@ describe('ForceUpdate', () => {
     expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       `hello2`
     )
+
+    id = "alpha"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
+      `0`
+    )
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
+      `alpha`
+    )
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
+      ``
+    )
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
+      ``
+    )
   })
 })
