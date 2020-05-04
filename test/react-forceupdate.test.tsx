@@ -1,4 +1,5 @@
 // __@ts-nocheck
+/* eslint-disable */
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import '@testing-library/jest-dom'

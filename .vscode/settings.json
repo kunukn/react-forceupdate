@@ -3,13 +3,11 @@
   "eslint.run": "onType",
   "eslint.validate": [
     "html",
-    "javascript"
+    "javascript",
+    "typescript"
   ],
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    // https://github.com/prettier/prettier-vscode#linter-integration
-    "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll": true
   },
 }
