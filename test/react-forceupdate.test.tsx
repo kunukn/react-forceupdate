@@ -19,9 +19,17 @@ describe('ForceUpdate', () => {
 
     // arrange
     // first the payload has not been received yet.
-    const receiverPayload = screen.getByTestId('receiver-payload')
-    expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventCount\":0,\"subscribedEventType\":\"alpha\"}`
+    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+      `0`
+    )
+    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+      `alpha`
+    )
+    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
+      ``
+    )
+    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+      ``
     )
 
     // Act
@@ -31,8 +39,17 @@ describe('ForceUpdate', () => {
 
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventType\":\"event_alpha\",\"payload\":\"hello1\",\"subscribedEventType\":\"alpha\",\"eventCount\":1}`
+    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+      `1`
+    )
+    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+      `alpha`
+    )
+    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
+      `event_alpha`
+    )
+    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+      `hello1`
     )
 
     // Act
@@ -40,8 +57,17 @@ describe('ForceUpdate', () => {
     fireEvent.click(senderButton)
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(receiverPayload)).toBe(
-      `{\"eventType\":\"event_alpha\",\"payload\":\"hello2\",\"subscribedEventType\":\"alpha\",\"eventCount\":2}`
+    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+      `2`
+    )
+    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+      `alpha`
+    )
+    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
+      `event_alpha`
+    )
+    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+      `hello2`
     )
   })
 })

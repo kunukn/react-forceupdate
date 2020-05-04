@@ -161,12 +161,15 @@ export const Type = () => {
 export const SenderReceiver = () => {
   const Receiver = () => {
     let state = useForceUpdate('alpha')
-    let renderTime = React.useRef({}).current
-    renderTime = Date.now()
     return (
       <div>
-        <pre data-testid="receiver-payload">{JSON.stringify(state)}</pre>
-        <div>{renderTime}</div>
+        <div>
+          <div data-testid="eventcount">{state.eventCount}</div>
+          <div data-testid="subscribedeventtype">{state.subscribedEventType}</div>
+          <div data-testid="eventtype">{state.eventType}</div>
+          <div data-testid="payload">{state.payload}</div>
+        </div>
+        <div>Render time: {Date.now()}</div>
       </div>
     )
   }
