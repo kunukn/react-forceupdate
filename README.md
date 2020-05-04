@@ -19,59 +19,6 @@ npm install mittt react-forceupdate
 # yarn add mittt react-forceupdate
 ```
 
-## API
-
-### useForceUpdate
-
-```jsx
-import { useForceUpdate } from 'react-forceupdate'
-
-function ReceiverComponent() {
-  // re-render this component on 'default' event
-  useForceUpdate() // same as useForceUpdate('default')
-
-  // re-render this component on this event
-  useForceUpdate('alpha')
-
-  // re-render this component on this event with received payload
-  let { payload } = useForceUpdate('bravo')
-
-  return <div>component {payload.message}</div>
-}
-```
-
-### runForceUpdate
-
-```jsx
-import { runForceUpdate } from 'react-forceupdate'
-
-function SenderComponent() {
-  let onUpdate = () => {
-    runForceUpdate() // same as runForceUpdate('default')
-  }
-  let onAlphaUpdate = () => {
-    runForceUpdate('alpha')
-  }
-  let onBravoUpdate = () => {
-    runForceUpdate('bravo', { message: 'hi' })
-  }
-
-  return (
-    <div>
-      <button onClick={onUpdate}>re-render receiver components</button>
-
-      <button onClick={onAlphaUpdate}>
-        re-render alpha receiver components
-      </button>
-
-      <button onClick={onBravoUpdate}>
-        re-render bravo receiver components with provided payload
-      </button>
-    </div>
-  )
-}
-```
-
 ## Usage example
 
 ### Basic
@@ -163,3 +110,56 @@ function App() {
 
 - https://codesandbox.io/s/react-forceupdate-library-vb2x2
 - https://codesandbox.io/s/react-forceupdate-pioue
+
+## API
+
+### useForceUpdate
+
+```jsx
+import { useForceUpdate } from 'react-forceupdate'
+
+function ReceiverComponent() {
+  // re-render this component on 'default' event
+  useForceUpdate() // same as useForceUpdate('default')
+
+  // re-render this component on this event
+  useForceUpdate('alpha')
+
+  // re-render this component on this event with received payload
+  let { payload } = useForceUpdate('bravo')
+
+  return <div>component {payload.message}</div>
+}
+```
+
+### runForceUpdate
+
+```jsx
+import { runForceUpdate } from 'react-forceupdate'
+
+function SenderComponent() {
+  let onUpdate = () => {
+    runForceUpdate() // same as runForceUpdate('default')
+  }
+  let onAlphaUpdate = () => {
+    runForceUpdate('alpha')
+  }
+  let onBravoUpdate = () => {
+    runForceUpdate('bravo', { message: 'hi' })
+  }
+
+  return (
+    <div>
+      <button onClick={onUpdate}>re-render receiver components</button>
+
+      <button onClick={onAlphaUpdate}>
+        re-render alpha receiver components
+      </button>
+
+      <button onClick={onBravoUpdate}>
+        re-render bravo receiver components with provided payload
+      </button>
+    </div>
+  )
+}
+```
