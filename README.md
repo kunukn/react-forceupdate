@@ -130,6 +130,12 @@ let Bravo = () => {
   return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
+let Star = () => {
+  let data = useForceUpdate('*') // runs on any event type
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>
+}
+
 function App() {
   let onUpdateAlpha = () => {
     const payload = { message: 'hi' }
@@ -147,6 +153,7 @@ function App() {
 
       <DeeplyNestedComponentContainingAlpha />
       <DeeplyNestedComponentContainingBravo />
+      <DeeplyNestedComponentContainingStar />
     </main>
   )
 }

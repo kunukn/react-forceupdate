@@ -33,9 +33,7 @@ export function runForceUpdate(
   emitter.emit(getKey(eventType), payload)
 }
 
-export function useForceUpdate(
-  subscribedTo?: Input
-): UseForceUpdateState {
+export function useForceUpdate(subscribedTo?: Input): UseForceUpdateState {
   let key = getKey(subscribedTo)
   let [state, setState] = React.useState({ eventCount: 0, subscribedTo })
 
