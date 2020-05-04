@@ -32,13 +32,11 @@ let nonReactive = {
 
 let Component1 = () => {
   useForceUpdate()
-
   return <div> {nonReactive.something} </div>
 }
 
 let Component2 = () => {
   useForceUpdate()
-
   return <div> {nonReactive.something} </div>
 }
 
@@ -66,21 +64,18 @@ function App() {
 import { runForceUpdate, useForceUpdate } from 'react-forceupdate'
 
 let Alpha = () => {
-  let data = useForceUpdate('alpha')
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  let { eventType, subscribedTo, payload } = useForceUpdate('alpha')
+  return <div>Alpha: {payload && payload.message}</div>
 }
 
 let Bravo = () => {
-  let data = useForceUpdate('bravo')
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  let { eventType, subscribedTo, payload } = useForceUpdate('bravo')
+  return <div>Bravo: {payload && payload.message}</div>
 }
 
 let Star = () => {
-  let data = useForceUpdate('*') // runs on any event type
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  let { eventType, subscribedTo, payload } = useForceUpdate('*') // runs on any event type
+  return <div>Star: {payload && payload.message}</div>
 }
 
 function App() {
