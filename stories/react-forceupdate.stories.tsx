@@ -1,3 +1,6 @@
+// __@ts-nocheck
+/* eslint-disable */
+
 import React from 'react'
 import { useForceUpdate, runForceUpdate, UseForceUpdateState } from '../src'
 import './styles.css'
@@ -156,7 +159,7 @@ export const Type = () => {
   return <App />
 }
 
-export const SenderReceiver = () => {
+export const UnitTestSenderReceiver = () => {
   const Receiver = ({ id, type }) => {
     let state: UseForceUpdateState = useForceUpdate(type)
     return (

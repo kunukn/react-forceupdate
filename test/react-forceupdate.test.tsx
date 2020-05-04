@@ -5,17 +5,17 @@ import * as ReactDOM from 'react-dom'
 import '@testing-library/jest-dom'
 import { render, fireEvent, screen, getNodeText } from '@testing-library/react'
 // import { renderHook, act } from '@testing-library/react-hooks'
-import { SenderReceiver } from '../stories/react-forceupdate.stories'
+import { UnitTestSenderReceiver } from '../stories/react-forceupdate.stories'
 
 describe('ForceUpdate', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<SenderReceiver />, div)
+    ReactDOM.render(<UnitTestSenderReceiver />, div)
     ReactDOM.unmountComponentAtNode(div)
   })
 
   it('can forceupdate a component with payload', () => {
-    render(<SenderReceiver />)
+    render(<UnitTestSenderReceiver />)
 
     // arrange
     // first the payload has not been received yet.
