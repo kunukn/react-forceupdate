@@ -1,7 +1,7 @@
 // ______@ts-nocheck
 
 import React from 'react'
-import { useForceUpdate, runForceUpdate } from '../src'
+import { useForceUpdate, runForceUpdate, UseForceUpdateState, UseForceUpdateProps, RunForceUpdateEventType } from '../src'
 import './styles.css'
 
 export default {
@@ -96,7 +96,7 @@ export const Default = () => {
 
 export const Type = () => {
   let Box = ({ type }: any) => {
-    let forceUpdateInfo = useForceUpdate(type)
+    let forceUpdateInfo: UseForceUpdateState = useForceUpdate(type)
 
     let [value, setValue] = React.useState(Date.now())
     let rerender = (React.useRef({}).current = 0)
@@ -160,7 +160,7 @@ export const Type = () => {
 
 export const SenderReceiver = () => {
   const Receiver = ({ id, type }) => {
-    let state = useForceUpdate(type)
+    let state: UseForceUpdateState = useForceUpdate(type)
     return (
       <div style={{ border: '1px solid', padding: '20px' }} data-testid={id}>
         <p>Receiver: {type}</p>

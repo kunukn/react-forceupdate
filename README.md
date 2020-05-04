@@ -120,8 +120,8 @@ function ReceiverComponent() {
   // re-render this component on this event
   useForceUpdate('alpha')
 
-  // re-render this component on this event with received payload
-  let { payload } = useForceUpdate('bravo')
+  // re-render this component on this event with received data
+  let { eventType, payload, subscribedTo, eventCount } = useForceUpdate('bravo')
 
   return <div>component {payload.message}</div>
 }
@@ -156,5 +156,20 @@ function SenderComponent() {
       </button>
     </div>
   )
+}
+```
+
+## TypeScript
+
+```jsx
+import {
+  useForceUpdate,
+  runForceUpdate,
+  UseForceUpdateState,
+} from 'react-forceupdate'
+
+function ReceiverComponent({ type }) {
+  let state: UseForceUpdateState = useForceUpdate(type)
+  return <div>{state.payload}</div>
 }
 ```
