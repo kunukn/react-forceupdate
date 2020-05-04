@@ -33,9 +33,12 @@ export function runForceUpdate(
   emitter.emit(getKey(eventType), payload)
 }
 
-export function useForceUpdate(subscribedTo?: Input): UseForceUpdateState {
-  let key = getKey(subscribedTo)
-  let [state, setState] = React.useState({ eventCount: 0, subscribedTo })
+export function useForceUpdate(input?: Input): UseForceUpdateState {
+  let subscribedTo = getKey(input)
+  let [state, setState] = React.useState({
+    eventCount: 0,
+    subscribedTo: subscribedTo,
+  })
 
   /*
   let fn = React.useMemo(
@@ -49,10 +52,10 @@ export function useForceUpdate(subscribedTo?: Input): UseForceUpdateState {
     updateState(setState, subscribedTo, eventType, payload)
 
   React.useEffect(() => {
-    emitter.on(key, fn)
+    emitter.on(subscribedTo, fn)
     // console.debug('on', emitterHandlerMap)
     return () => {
-      emitter.off(key, fn)
+      emitter.off(subscribedTo, fn)
       // console.debug('off', emitterHandlerMap)
     }
   })

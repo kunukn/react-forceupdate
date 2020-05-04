@@ -159,35 +159,21 @@ export const Type = () => {
 }
 
 export const SenderReceiver = () => {
-  const Receiver1 = () => {
-    let state = useForceUpdate('alpha')
+  const Receiver = ({ id, type }) => {
+    let state = useForceUpdate(type)
     return (
-      <div style={{ border: '1px solid', padding: '20px' }}>
-        <p>Receiver 1</p>
+      <div style={{ border: '1px solid', padding: '20px' }} data-testid={id}>
+        <p>Receiver: {type}</p>
         <div>
-          <div><strong>count: </strong><span data-testid="eventcount1">{state.eventCount}</span></div>
-          <div><strong>subscribed: </strong><span data-testid="subscribedto1">{state.subscribedTo}</span></div>
-          <div><strong>event: </strong><span data-testid="eventtype1">{state.eventType}</span></div>
-          <div><strong>payload: </strong><span data-testid="payload1">{state.payload}</span></div>
+          <div><strong>count: </strong><span data-testid={id + "eventcount"}>{state.eventCount}</span></div>
+          <div><strong>subscribed: </strong><span data-testid={id + "subscribedto"}>{state.subscribedTo}</span></div>
+          <div><strong>event: </strong><span data-testid={id + "eventtype"}>{state.eventType}</span></div>
+          <div><strong>payload: </strong><span data-testid={id + "payload"}>{state.payload}</span></div>
         </div>
         <div>Render time: {Date.now()}</div>
       </div>
     )
-  }
-  const Receiver2 = () => {
-    let state = useForceUpdate('*')
-    return (
-      <div style={{ border: '1px solid', padding: '20px' }}>
-        <p>Receiver 2</p>
-        <div>
-          <div><strong>count: </strong><span data-testid="eventcount2">{state.eventCount}</span></div>
-          <div><strong>subscribed: </strong><span data-testid="subscribedto2">{state.subscribedTo}</span></div>
-          <div><strong>event: </strong><span data-testid="eventtype2">{state.eventType}</span></div>
-          <div><strong>payload: </strong><span data-testid="payload2">{state.payload}</span></div>
-        </div>
-        <div>Render time: {Date.now()}</div>
-      </div>
-    )
+
   }
 
   const Sender = () => {
@@ -198,7 +184,7 @@ export const SenderReceiver = () => {
         data-testid="sender-button"
         onClick={() => {
           clickCount++
-          runForceUpdate('alpha', 'hello' + clickCount)
+          runForceUpdate('default', 'hello' + clickCount)
         }}
       >
         Send
@@ -209,8 +195,9 @@ export const SenderReceiver = () => {
   const App = () => {
     return (
       <div>
-        <Receiver1 />
-        <Receiver2 />
+        <Receiver id="default" type={undefined} />
+        <Receiver id="alpha" type="alpha" />
+        <Receiver id="*" type="*" />
         <Sender />
       </div>
     )

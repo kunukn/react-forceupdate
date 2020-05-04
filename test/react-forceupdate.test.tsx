@@ -19,29 +19,31 @@ describe('ForceUpdate', () => {
 
     // arrange
     // first the payload has not been received yet.
-    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
+    let id = "default"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
       `0`
     )
-    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
       ``
     )
-    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       ``
     )
 
-    expect(getNodeText(screen.getByTestId('eventcount2'))).toBe(
+    id = "*"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
       `0`
     )
-    expect(getNodeText(screen.getByTestId('subscribedto2'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
       `*`
     )
-    expect(getNodeText(screen.getByTestId('eventtype2'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
       ``
     )
-    expect(getNodeText(screen.getByTestId('payload2'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       ``
     )
 
@@ -52,16 +54,17 @@ describe('ForceUpdate', () => {
 
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
+    id = "default"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
       `1`
     )
-    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       `hello1`
     )
 
@@ -70,32 +73,32 @@ describe('ForceUpdate', () => {
     fireEvent.click(senderButton)
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
+    id = "default"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
       `2`
     )
-    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       `hello2`
     )
 
-    expect(getNodeText(screen.getByTestId('eventcount2'))).toBe(
+    id = "*"
+    expect(getNodeText(screen.getByTestId(id + 'eventcount'))).toBe(
       `2`
     )
-    expect(getNodeText(screen.getByTestId('subscribedto2'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'subscribedto'))).toBe(
       `*`
     )
-    expect(getNodeText(screen.getByTestId('eventtype2'))).toBe(
-      `alpha`
+    expect(getNodeText(screen.getByTestId(id + 'eventtype'))).toBe(
+      `default`
     )
-    expect(getNodeText(screen.getByTestId('payload2'))).toBe(
+    expect(getNodeText(screen.getByTestId(id + 'payload'))).toBe(
       `hello2`
     )
-
-
   })
 })
