@@ -1,7 +1,5 @@
-// ______@ts-nocheck
-
 import React from 'react'
-import { useForceUpdate, runForceUpdate, UseForceUpdateState, UseForceUpdateProps, RunForceUpdateEventType } from '../src'
+import { useForceUpdate, runForceUpdate, UseForceUpdateState } from '../src'
 import './styles.css'
 
 export default {
