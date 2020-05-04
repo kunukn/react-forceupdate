@@ -12,19 +12,18 @@ export type RunForceUpdatePayload = any
 
 export type UseForceUpdateState = {
   eventCount: number
-  subscribedEventType: string
+  subscribedTo: string
   eventType?: string
   payload?: any
 }
 
 let emitterHandlerMap: EventHandlerMap = Object.create(null)
 let emitter: Emitter = mittt(emitterHandlerMap)
-let prefix = 'event_'
 
 let getKey = (eventType: Input): string => {
-  if (!eventType) return prefix + 'default'
+  if (!eventType) return 'default'
 
-  return prefix + eventType
+  return eventType
 }
 
 export function runForceUpdate(
@@ -35,21 +34,21 @@ export function runForceUpdate(
 }
 
 export function useForceUpdate(
-  subscribedEventType?: Input
+  subscribedTo?: Input
 ): UseForceUpdateState {
-  let key = getKey(subscribedEventType)
-  let [state, setState] = React.useState({ eventCount: 0, subscribedEventType })
+  let key = getKey(subscribedTo)
+  let [state, setState] = React.useState({ eventCount: 0, subscribedTo })
 
   /*
   let fn = React.useMemo(
     () => (eventType: Input, payload: any) =>
-      updateState(setState, subscribedEventType, eventType, payload),
+      updateState(setState, subscribedTo, eventType, payload),
     []
   )
   */
   // React.useMemo not needed.
   let fn = (eventType: Input, payload: any) =>
-    updateState(setState, subscribedEventType, eventType, payload)
+    updateState(setState, subscribedTo, eventType, payload)
 
   React.useEffect(() => {
     emitter.on(key, fn)
@@ -65,7 +64,7 @@ export function useForceUpdate(
 
 function updateState(
   setState: React.Dispatch<React.SetStateAction<UseForceUpdateState>>,
-  subscribedEventType: Input,
+  subscribedTo: Input,
   eventType: string,
   payload?: any
 ) {
@@ -75,7 +74,7 @@ function updateState(
     let result: UseForceUpdateState = {
       eventType,
       payload,
-      subscribedEventType,
+      subscribedTo,
       eventCount,
     }
     if (payload === undefined) delete result.payload

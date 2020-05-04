@@ -1,5 +1,5 @@
 {
-  "version": "0.3.2",
+  "version": "0.3.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "gzip": "node gzip-size.js"
   },
   "dependencies": {
-    "mittt": "^1"
+    "mittt": "^2"
   },
   "peerDependencies": {
     "react": ">=16"

@@ -19,16 +19,29 @@ describe('ForceUpdate', () => {
 
     // arrange
     // first the payload has not been received yet.
-    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
       `0`
     )
-    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
       `alpha`
     )
-    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
+    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
       ``
     )
-    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
+      ``
+    )
+
+    expect(getNodeText(screen.getByTestId('eventcount2'))).toBe(
+      `0`
+    )
+    expect(getNodeText(screen.getByTestId('subscribedto2'))).toBe(
+      `*`
+    )
+    expect(getNodeText(screen.getByTestId('eventtype2'))).toBe(
+      ``
+    )
+    expect(getNodeText(screen.getByTestId('payload2'))).toBe(
       ``
     )
 
@@ -39,16 +52,16 @@ describe('ForceUpdate', () => {
 
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
       `1`
     )
-    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
       `alpha`
     )
-    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
-      `event_alpha`
+    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
+      `alpha`
     )
-    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
       `hello1`
     )
 
@@ -57,17 +70,32 @@ describe('ForceUpdate', () => {
     fireEvent.click(senderButton)
     // Assert
     // Receiver has received the event with payload
-    expect(getNodeText(screen.getByTestId('eventcount'))).toBe(
+    expect(getNodeText(screen.getByTestId('eventcount1'))).toBe(
       `2`
     )
-    expect(getNodeText(screen.getByTestId('subscribedeventtype'))).toBe(
+    expect(getNodeText(screen.getByTestId('subscribedto1'))).toBe(
       `alpha`
     )
-    expect(getNodeText(screen.getByTestId('eventtype'))).toBe(
-      `event_alpha`
+    expect(getNodeText(screen.getByTestId('eventtype1'))).toBe(
+      `alpha`
     )
-    expect(getNodeText(screen.getByTestId('payload'))).toBe(
+    expect(getNodeText(screen.getByTestId('payload1'))).toBe(
       `hello2`
     )
+
+    expect(getNodeText(screen.getByTestId('eventcount2'))).toBe(
+      `2`
+    )
+    expect(getNodeText(screen.getByTestId('subscribedto2'))).toBe(
+      `*`
+    )
+    expect(getNodeText(screen.getByTestId('eventtype2'))).toBe(
+      `alpha`
+    )
+    expect(getNodeText(screen.getByTestId('payload2'))).toBe(
+      `hello2`
+    )
+
+
   })
 })

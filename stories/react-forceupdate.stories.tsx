@@ -159,15 +159,31 @@ export const Type = () => {
 }
 
 export const SenderReceiver = () => {
-  const Receiver = () => {
+  const Receiver1 = () => {
     let state = useForceUpdate('alpha')
     return (
-      <div>
+      <div style={{ border: '1px solid', padding: '20px' }}>
+        <p>Receiver 1</p>
         <div>
-          <div data-testid="eventcount">{state.eventCount}</div>
-          <div data-testid="subscribedeventtype">{state.subscribedEventType}</div>
-          <div data-testid="eventtype">{state.eventType}</div>
-          <div data-testid="payload">{state.payload}</div>
+          <div><strong>count: </strong><span data-testid="eventcount1">{state.eventCount}</span></div>
+          <div><strong>subscribed: </strong><span data-testid="subscribedto1">{state.subscribedTo}</span></div>
+          <div><strong>event: </strong><span data-testid="eventtype1">{state.eventType}</span></div>
+          <div><strong>payload: </strong><span data-testid="payload1">{state.payload}</span></div>
+        </div>
+        <div>Render time: {Date.now()}</div>
+      </div>
+    )
+  }
+  const Receiver2 = () => {
+    let state = useForceUpdate('*')
+    return (
+      <div style={{ border: '1px solid', padding: '20px' }}>
+        <p>Receiver 2</p>
+        <div>
+          <div><strong>count: </strong><span data-testid="eventcount2">{state.eventCount}</span></div>
+          <div><strong>subscribed: </strong><span data-testid="subscribedto2">{state.subscribedTo}</span></div>
+          <div><strong>event: </strong><span data-testid="eventtype2">{state.eventType}</span></div>
+          <div><strong>payload: </strong><span data-testid="payload2">{state.payload}</span></div>
         </div>
         <div>Render time: {Date.now()}</div>
       </div>
@@ -193,7 +209,8 @@ export const SenderReceiver = () => {
   const App = () => {
     return (
       <div>
-        <Receiver />
+        <Receiver1 />
+        <Receiver2 />
         <Sender />
       </div>
     )
