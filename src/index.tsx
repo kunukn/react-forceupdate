@@ -40,7 +40,7 @@ export function useForceUpdate(input?: Input): UseForceUpdateState {
   let subscribedTo = getKey(input)
   let [state, setState] = React.useState({
     eventCount: 0,
-    subscribedTo: subscribedTo,
+    subscribedTo,
   })
 
   /*
