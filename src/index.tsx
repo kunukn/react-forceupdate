@@ -1,6 +1,9 @@
 import React from 'react'
 import mittt, { Emitter, EventHandlerMap } from 'mittt'
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect
+
 // Please do not use types off of a default export module or else Storybook Docs will suffer.
 // see: https://github.com/storybookjs/storybook/issues/9556
 
@@ -51,7 +54,7 @@ export function useForceUpdate(input?: Input): UseForceUpdateState {
   let fn = (eventType: Input, payload: any) =>
     updateState(setState, subscribedTo, eventType, payload)
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     emitter.on(subscribedTo, fn)
     // console.debug('on', emitterHandlerMap)
     return () => {
